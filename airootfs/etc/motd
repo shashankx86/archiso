@@ -7,3 +7,4 @@ Ethernet and Wi-Fi connections using DHCP should work automatically.
 After connecting to the internet, the installation guide can be accessed
 via the convenience script [35mInstallation_guide[0m.
 
+User 'seds' password is set to root. Make sure you change this after the install.
