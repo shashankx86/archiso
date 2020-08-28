@@ -9,4 +9,12 @@ set -e -u
 sed -i 's/#\(en_US\.UTF-8\)/\1/' /etc/locale.gen
 locale-gen
 
+# uncomment #Server
 sed -i "s/#Server/Server/g" /etc/pacman.d/mirrorlist
+
+# personal home directory
+UHOME="/home/seds"
+
+su seds - -c "chezmoi -S $UHOME/dotfiles init https://github.com/benmezger/dotfiles.git"
+su seds - -c "(cd $UHOME; chezmoi diff)"
+su seds - -c "(cd $UHOME; chezmoi apply -v)"
