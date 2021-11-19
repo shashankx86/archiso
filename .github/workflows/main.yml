@@ -1,0 +1,35 @@
+name: Build ISO (Release)
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main # In case we adopt this convention in the future
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
+      - '**.editorconfig'
+      - '**.gitignore'
+      - '**.md'
+      - 'LICENSE'
+      - 'PKGBUILD'
+  release:
+    types:
+      - created
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+      options: --privileged
+    steps:
+      - uses: actions/checkout@v2
+      - run: ls 
+      - run: pacman -Sy
+      - run: pacman-key --init
+      - run: mkarchiso -v -w archiso-out -o out ./archiso
+      - uses: actions/upload-artifact@v2
+        with:
+          name: x86_64
+          path: out/*
