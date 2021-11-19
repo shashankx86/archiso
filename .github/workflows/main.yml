@@ -28,6 +28,9 @@ jobs:
       - run: ls 
       - run: pacman -Sy
       - run: pacman-key --init
+      - run: mkdir fgh
+      - run: cd fgh && pacman -S archiso
+      - run: ls
       - run: mkarchiso -v -w archiso-out -o out ./archiso
       - uses: actions/upload-artifact@v2
         with:
