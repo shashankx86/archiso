@@ -26,10 +26,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ls 
-      - run: sudo pacman -Sy
-      - run: sudo pacman-key --init
+      - run: pacman -Sy
+      - run: pacman-key --init
       - run: mkdir fgh
-      - run: cd fgh && sudo pacman -S archiso
+      - run: cd fgh && pacman -S archiso
       - run: ls
       - run: mkarchiso -v -w archiso-out -o out ./archiso
       - uses: actions/upload-artifact@v2
